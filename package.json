@@ -2,7 +2,7 @@
   "name": "petful-server-brett-matt",
   "version": "1.0.0",
   "description": "Petful server",
-  "main": "server.js",
+  "main": "src/server.js",
   "directories": {
     "test": "test"
   },
