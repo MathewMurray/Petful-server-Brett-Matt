@@ -22,9 +22,12 @@
   },
   "homepage": "https://github.com/MathewMurray/Petful-server-Brett-Matt#readme",
   "devDependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^5.1.0",
-    "nodemon": "^2.0.4"
+    "knex": "^0.21.6",
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.3"
   }
 }

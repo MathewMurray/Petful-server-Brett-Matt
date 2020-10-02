@@ -42,7 +42,7 @@ dogsRouter
   .get((req, res, next) => {
     res.status(200).json(dogQueue.peek());
   })
-  .delete((req, res, next) => {
+  .delete(jsonParser,(req, res, next) => {
     dogQueue.dequeue();
     res.status(200).json();
   });

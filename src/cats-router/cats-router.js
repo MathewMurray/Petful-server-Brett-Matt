@@ -55,7 +55,7 @@ catsRouter
   .get((req, res, next) => {
     res.status(200).json(catQueue.peek());
   })
-  .delete((req, res, next) => {
+  .delete(jsonParser,(req, res, next) => {
     catQueue.dequeue();
     res.status(200).json();
   });
