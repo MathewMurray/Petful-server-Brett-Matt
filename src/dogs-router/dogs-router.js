@@ -16,7 +16,7 @@ const dogs = {
 const dogs2 = {
   imageURL: 'https://cdn.pixabay.com/photo/2016/05/09/10/42/weimaraner-1381186_960_720.jpg',
   imageDescription: 'White dog.',
-  name: 'Happy',
+  name: 'Happy ',
   sex: 'Female',
   age: 3,
   breed: 'Mutt',

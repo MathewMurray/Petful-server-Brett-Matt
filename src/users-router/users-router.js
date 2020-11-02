@@ -31,6 +31,7 @@ usersRouter
         curr_node = curr_node.next;
       }
       userinfo = {
+        
         count: counter,
         nextinline: nextinline
       };

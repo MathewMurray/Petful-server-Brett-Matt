@@ -1,0 +1,10 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#3B2A17",
+    "titleBar.activeBackground": "#523B20",
+    "titleBar.activeForeground": "#FDFBF9"
+  },
+  "cSpell.words": [
+    "Postgrestion"
+  ]
+}
