@@ -2,7 +2,7 @@
   "name": "petful-server-brett-matt",
   "version": "1.0.0",
   "description": "Petful server",
-  "main": "server.js",
+  "main": ".src/server.js",
   "directories": {
     "test": "test"
   },
@@ -22,12 +22,17 @@
   },
   "homepage": "https://github.com/MathewMurray/Petful-server-Brett-Matt#readme",
   "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "12.18.1"
+  },
+  "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^5.1.0",
     "knex": "^0.21.6",
-    "nodemon": "^2.0.4",
     "pg": "^8.3.3"
   }
 }
