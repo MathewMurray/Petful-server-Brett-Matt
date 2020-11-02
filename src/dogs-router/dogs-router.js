@@ -7,7 +7,7 @@ const Queue = require('../queue.js');
 const dogs = {
   imageURL: 'https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
   imageDescription: 'Looks like a cat, is really a dog.',
-  name: 'Boo',
+  name: 'Boo ',
   sex: 'Female',
   age: 2,
   breed: 'Boo is Boo',
@@ -46,8 +46,5 @@ dogsRouter
     dogQueue.dequeue();
     res.status(200).json();
   });
-
-
-
 
 module.exports = dogsRouter;
