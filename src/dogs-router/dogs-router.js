@@ -39,7 +39,7 @@ dogQueue.enqueue(dogs3);
 
 dogsRouter
   .route('/')
-  .get((req, res, next) => {
+  .get(( req, res, next) => {
     res.status(200).json(dogQueue.peek());
   })
   .delete(jsonParser,(req, res, next) => {

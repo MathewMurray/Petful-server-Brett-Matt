@@ -1,13 +1,13 @@
 /* eslint-disable strict */
-const express = require('express');
+const express = require("express");
 const jsonParser = express.json();
 const usersRouter = express.Router();
-const Queue = require('../queue.js');
+const Queue = require("../queue.js");
 
 let userQueue = new Queue();
 
 usersRouter
-  .route('/')
+  .route("/")
   .get((req, res, next) => {
     let userinfo = {};
     if (!userQueue.isEmpty()) {
@@ -16,7 +16,7 @@ usersRouter
       let nextinline = null;
       while (curr_node) {
         //console.log(Date.now() > curr_node.data.entertime+60000)
-        if (Date.now() > curr_node.data.entertime + (60000 * 5)) {
+        if (Date.now() > curr_node.data.entertime + 60000 * 5) {
           if (curr_node.next) {
             userQueue.first = curr_node.next;
           } else {
@@ -31,18 +31,19 @@ usersRouter
         curr_node = curr_node.next;
       }
       userinfo = {
-        
         count: counter,
-        nextinline: nextinline
+        nextinline: nextinline,
       };
     }
     res.status(200).json(userinfo);
   })
-  .post((req, res, next) => {
+  .post(jsonParser,(req, res, next) => {
     const current_time = Date.now();
     const users = {
-      entertime: current_time
+      name: req.body.name,
+      entertime: current_time,
     };
+    console.log("users", users)
     userQueue.enqueue(users);
     let userinfo = {};
     if (!userQueue.isEmpty()) {
@@ -52,8 +53,7 @@ usersRouter
       while (curr_node) {
         //console.log(Date.now() > curr_node.data.entertime+60000)
         if (Date.now() > curr_node.data.entertime + 60000) {
-          if (curr_node.next)
-            userQueue.first = curr_node.next;
+          if (curr_node.next) userQueue.first = curr_node.next;
         } else {
           counter++;
           if (nextinline === null) {
@@ -65,13 +65,14 @@ usersRouter
       userinfo = {
         count: counter,
         nextinline: nextinline,
-        current_user: current_time
+        current_user: current_time,
+        name: req.body.name
       };
+      console.log("userinfo", userinfo)
     }
     res.status(200).json(userinfo);
   })
   .delete(jsonParser, (req, res, next) => {
-
     const to_delete = JSON.stringify(req.body.entertime);
     let userinfo = {};
     if (!userQueue.isEmpty()) {
@@ -79,7 +80,10 @@ usersRouter
       let counter = 0;
       let nextinline = null;
       while (curr_node) {
-        if (Date.now() > curr_node.data.entertime + 60000 || to_delete === curr_node.data.entertime) {
+        if (
+          Date.now() > curr_node.data.entertime + 60000 ||
+          to_delete === curr_node.data.entertime
+        ) {
           if (curr_node.next) {
             userQueue.first = curr_node.next;
           } else {
@@ -95,7 +99,7 @@ usersRouter
       }
       userinfo = {
         count: counter,
-        nextinline: nextinline
+        nextinline: nextinline,
       };
     }
     res.status(200).json();
