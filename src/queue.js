@@ -1,8 +1,8 @@
 /* eslint-disable strict */
 
-const Node = require('./node.js');
+const Node = require("./node.js");
 class Queue {
-  constructor () {
+  constructor() {
     this.first = null;
     this.last = null;
     this.length = 0;
@@ -12,8 +12,7 @@ class Queue {
     const newNode = new Node(item);
     if (!this.first) {
       this.first = newNode;
-    }
-    else if (this.last) {
+    } else if (this.last) {
       this.last.next = newNode;
     }
     this.last = newNode;
@@ -21,7 +20,7 @@ class Queue {
   }
 
   dequeue() {
-    if (this.first === null) {
+    if (!this.first) {
       return;
     }
     const node = this.first;
@@ -45,7 +44,6 @@ class Queue {
     }
     return false;
   }
-
 }
 
 function peek(queue) {
@@ -61,9 +59,9 @@ function isEmpty(queue) {
 }
 
 function display(queue) {
-  let results = '';
+  let results = "";
   let currNode = queue.first;
-  if (!currNode) return 'Your queue is empty';
+  if (!currNode) return "Your queue is empty";
   else if (!currNode.next) {
     results += `${currNode.data}->null`;
     return results;
@@ -77,7 +75,7 @@ function display(queue) {
       results += `${currNode.data}->`;
       currNode = currNode.next;
     }
-    results += 'null';
+    results += "null";
     return results;
   }
 }

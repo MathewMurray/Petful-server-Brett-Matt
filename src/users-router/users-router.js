@@ -1,27 +1,34 @@
 /* eslint-disable strict */
-const express = require('express');
+const express = require("express");
 const jsonParser = express.json();
 const usersRouter = express.Router();
-const Queue = require('../queue.js');
-const store = require('../store');
+const Queue = require("../queue.js");
 
 let userQueue = new Queue();
-//store.users.forEach((user) => userQueue.enqueue(user));
-// console.log('userQueue', userQueue);
+let initialUsers = [
+  "Christen Coggin",
+  "Buddy Blakely",
+  "Britany Bowie",
+  "Rashad Roa",
+];
+initialUsers.forEach((user) => userQueue.enqueue(user));
 
 usersRouter
-  .route('/')
+  .route("/")
   .get((req, res, next) => {
+    console.log("Get", userQueue.peek());
     res.status(200).json(userQueue.peek());
   })
   .post(jsonParser, (req, res, next) => {
-    const {name} = req.body;
+    const { name } = req.body;
     userQueue.enqueue(name);
-    res.status(200).json(userQueue);
+    console.log("Post", userQueue.peek());
+    res.status(200).json(userQueue.peek());
   })
   .delete(jsonParser, (req, res, next) => {
     userQueue.dequeue();
-    res.status(200).json(userQueue);
+    console.log("delete", userQueue.peek());
+    res.status(200).json(userQueue.peek());
   });
 
 module.exports = usersRouter;
