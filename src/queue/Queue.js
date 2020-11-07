@@ -1,27 +1,27 @@
 class Queue {
-  constructor(){
+  constructor() {
     this.array = [];
   }
 
-  enqueue(data){
+  enqueue(data) {
     this.array.push(data);
   }
 
-  dequeue(){
-    if(this.array.length > 0){
+  dequeue() {
+    if (this.array.length > 0) {
       return this.array.shift();
     }
     return null;
   }
 
-  show(){
-    if(this.array.length > 0) {
+  show() {
+    if (this.array.length > 0) {
       return this.array[0];
     }
     return null;
   }
 
-  all(){
+  all() {
     return this.array;
   }
 }

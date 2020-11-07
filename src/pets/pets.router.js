@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
   const pets = Pets.get()
   res.status(200).json(pets);
 });
+
 router.delete('/', json, (req, res) => {
   const { type } = req.body;
   Pets.dequeue(type).then((pet) => {
@@ -20,11 +21,13 @@ router.delete('/', json, (req, res) => {
 });
 
 router.get("/cat", (req, res) => {
-  res.status(200).json();
+  const pets = Pets.get()
+  res.status(200).json(pets.cats);
 });
 
 router.get("/dog", (req, res) => {
-  res.status(200).json();
+  const pets = Pets.get()
+  res.status(200).json(pets.dogs);
 });
 
 module.exports = router;
