@@ -9,9 +9,11 @@ class Queue {
 
   dequeue() {
     if (this.array.length > 0) {
-      return this.array.shift();
+      this.array.shift()
+     
+      return this.array;
     }
-    return null;
+    return this.array;
   }
 
   show() {
