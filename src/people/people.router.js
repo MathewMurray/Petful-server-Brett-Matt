@@ -1,30 +1,29 @@
 const express = require("express");
 const json = require("body-parser").json();
-const store = require("../store");
+
 const People = require("./people.service");
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  People.get()
-    .then((people) => {
-      res.json(people);
-    })
-    .catch(() => console.error("error"));
+  // Return all the people currently in the queue.
+  people = People.get();
+  if (!people) {
+    res.status(400).json({ error: { message: "No people list" } });
+  } else {
+    res.json(people);
+  }
 });
+
 router.post("/", json, (req, res) => {
-  const { name } = req.body;
-  People.enqueue(name)
-    .then((people) => {
-      res.json(people);
-    })
-    .catch(() => console.error("error"));
-});
-router.delete("/", (req, res) => {
-  People.dequeue()
-    .then((people) => {
-      res.json(people);
-    })
-    .catch(() => console.error("error"));
+  // Add a new person to the queue.
+  let { person } = req.body;
+  try {
+    People.enqueue(person);
+    res.status(200).json(People.get());
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
 });
 
 module.exports = router;

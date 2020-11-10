@@ -1,30 +1,55 @@
+class _node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
 class Queue {
   constructor() {
-    this.array = [];
+    this.first = null;
+    this.last = null;
   }
 
   enqueue(data) {
-    this.array.push(data);
+    // Add some data to the queue.
+    const node = new _node(data);
+    if (!this.first) {
+      this.first = node;
+    }
+    if (this.last) {
+      this.last.next = node;
+    }
+    this.last = node;
   }
 
   dequeue() {
-    if (this.array.length > 0) {
-      this.array.shift()
-     
-      return this.array;
+    // Remove some data from the queue.
+    if (!this.first) {
+      return;
     }
-    return this.array;
+    const node = this.first;
+    this.first = this.first.next;
+    if (node == this.last) {
+      this.last = null;
+    }
+    return node.value;
   }
 
   show() {
-    if (this.array.length > 0) {
-      return this.array[0];
-    }
-    return null;
+    // Return the next item in the queue.
+    return this.first.value;
   }
 
   all() {
-    return this.array;
+    // Return all items in the queue as a array.
+    let node = this.first;
+    const results = [];
+    while (node != null) {
+      results.push(node.value);
+      node = node.next;
+    }
+    return results;
   }
 }
 
