@@ -6,7 +6,6 @@ const Pets = require("./pets.service");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  // Return all pets currently up for adoption.
   const pets = Pets.get();
   res.status(200).json(pets);
 });
